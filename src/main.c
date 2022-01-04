@@ -2,8 +2,8 @@
 #include "milis.h"
 
 /*#include "delay.h"*/
-/*#include <stdio.h>*/
-/*#include "../lib/uart.c"*/
+#include <stdio.h>
+#include "../lib/uart.c"
 
 #define _ISOC99_SOURCE
 #define _GNU_SOURCE
@@ -24,6 +24,8 @@ void setup(void)
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);      // taktovani MCU na 16MHz
     GPIO_Init(LED_PORT, LED_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
     init_milis();
+
+    init_uart();
 }
 
 
@@ -39,6 +41,7 @@ int main(void)
         if (milis() - time > 333 && BTN_PUSH) {
             LED_TOGG; 
             time = milis();
+            printf("ahoj\r\n");
         }
 
         /*LED_FLIP; */
